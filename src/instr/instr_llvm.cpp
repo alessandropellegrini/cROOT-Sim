@@ -154,7 +154,7 @@ public:
 
 			for (BasicBlock &B : *Cloned)
 				for (Instruction &I : B)
-					;// TODO: incremental instrumentation
+					(void) I;// TODO: incremental instrumentation
 		}
 
 		return true;
@@ -198,9 +198,8 @@ private:
 	void InstrumentWriteInstruction(Module &M, Instruction *TI,
 					FunctionCallee memtrace_fnc)
 	{
-		if (!TI->mayWriteToMemory()) {
+		if (!TI->mayWriteToMemory())
 			return;
-		}
 
 		Value *args[2];
 

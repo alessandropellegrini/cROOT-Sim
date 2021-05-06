@@ -43,24 +43,6 @@ test_specs = {
     'run_plugin' : true,
     'rslib' : true,
     'mpi' : true
-  },
-
-  'model_pcs': {
-    'src' : [
-      'models' / 'model_test.c', 
-      models_dir / 'pcs' / 'application.c', 
-      models_dir / 'pcs' / 'functions_app.c'
-    ],
-    'run_plugin' : true,
-    'rslib' : true
-  },
-  'model_phold': {
-    'src' : [
-      'models' / 'model_test.c', 
-      models_dir / 'phold' / 'application.c', 
-    ],
-    'run_plugin' : true,
-    'rslib' : true
   }
 }
 

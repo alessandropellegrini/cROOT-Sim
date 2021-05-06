@@ -44,12 +44,13 @@ static simtime_t current_evt_time;
 
 void serial_model_init(void)
 {
-	struct s_lp_ctx tmp_lp = {0};
+	struct s_lp_ctx tmp_lp;
+	memset(&tmp_lp, 0, sizeof(tmp_lp));
 	s_current_lp = &tmp_lp;
 	s_lps = s_current_lp - n_lps;
 
 	lib_lp_init();
-	ProcessEvent(0, 0, MODEL_INIT, NULL, 0, NULL);
+	model_process(0, 0, MODEL_INIT, NULL, 0);
 	lib_lp_fini();
 }
 
@@ -74,7 +75,7 @@ static void serial_simulation_init(void)
 #if LOG_DEBUG >= LOG_LEVEL
 		s_lps[i].last_evt_time = -1;
 #endif
-		ProcessEvent(i, 0, LP_INIT, NULL, 0, s_lps[i].lib_ctx.state_s);
+		model_process(i, 0, LP_INIT, NULL, 0);
 	}
 }
 
@@ -85,11 +86,11 @@ static void serial_simulation_fini(void)
 {
 	for (uint64_t i = 0; i < n_lps; ++i) {
 		s_current_lp = &s_lps[i];
-		ProcessEvent(i, 0, LP_FINI, NULL, 0, s_lps[i].lib_ctx.state_s);
+		model_process(i, 0, LP_FINI, NULL, 0);
 		lib_lp_fini();
 	}
 
-	ProcessEvent(0, 0, MODEL_FINI, NULL, 0, NULL);
+	model_process(0, 0, MODEL_FINI, NULL, 0);
 
 	for (array_count_t i = 0; i < array_count(queue); ++i) {
 		msg_allocator_free(array_get_at(queue, i));
@@ -132,18 +133,17 @@ static void serial_simulation_run(void)
 
 		stats_time_start(STATS_MSG_PROCESSED);
 
-		ProcessEvent(
+		model_process(
 			cur_msg->dest,
 			cur_msg->dest_t,
 			cur_msg->m_type,
 			cur_msg->pl,
-			cur_msg->pl_size,
-			s_current_lp->lib_ctx.state_s
+			cur_msg->pl_size
 		);
 
 		stats_time_take(STATS_MSG_PROCESSED);
 
-		bool can_end = CanEnd(cur_msg->dest, s_current_lp->lib_ctx.state_s);
+		bool can_end = model_lp_can_end(cur_msg->dest);
 
 		if (can_end != s_current_lp->terminating) {
 			s_current_lp->terminating = can_end;

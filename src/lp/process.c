@@ -54,7 +54,7 @@ void process_global_init(void)
 
 void process_global_fini(void)
 {
-	ProcessEvent(0, 0, MODEL_FINI, NULL, 0, NULL);
+	model_process(0, 0, MODEL_FINI, NULL, 0);
 }
 
 void process_init(void)
@@ -83,7 +83,7 @@ void process_lp_init(void)
 
 	array_push(proc_p->past_msgs, msg);
 	array_push(proc_p->sent_msgs, NULL);
-	ProcessEvent_pr(this_lp - lps, 0, LP_INIT, NULL, 0, NULL);
+	model_process_pr(this_lp - lps, 0, LP_INIT, NULL, 0);
 
 	model_allocator_checkpoint_next_force_full();
 	model_allocator_checkpoint_take(0);
@@ -95,8 +95,7 @@ void process_lp_init(void)
 void process_lp_deinit(void)
 {
 	struct lp_ctx *this_lp = current_lp;
-	ProcessEvent_pr(this_lp - lps, 0, LP_FINI, NULL, 0,
-			   this_lp->lib_ctx_p->state_s);
+	model_process_pr(this_lp - lps, 0, LP_FINI, NULL, 0);
 }
 
 /**
@@ -123,18 +122,11 @@ static inline void silent_execution(struct process_data *proc_p,
 {
 	silent_processing = true;
 
-	void *state_p = current_lp->lib_ctx_p->state_s;
 	for (array_count_t k = last_i + 1; k < past_i; ++k) {
 		const struct lp_msg *msg = array_get_at(proc_p->past_msgs, k);
 		stats_time_start(STATS_MSG_SILENT);
-		ProcessEvent_pr(
-			msg->dest,
-			msg->dest_t,
-			msg->m_type,
-			msg->pl,
-			msg->pl_size,
-			state_p
-		);
+		model_process_pr(msg->dest, msg->dest_t, msg->m_type, msg->pl,
+				msg->pl_size);
 		stats_time_take(STATS_MSG_SILENT);
 	}
 
@@ -314,14 +306,8 @@ void process_msg(void)
 	array_push(proc_p->past_msgs, msg);
 
 	stats_time_start(STATS_MSG_PROCESSED);
-	ProcessEvent_pr(
-		msg->dest,
-		msg->dest_t,
-		msg->m_type,
-		msg->pl,
-		msg->pl_size,
-		this_lp->lib_ctx_p->state_s
-	);
+	model_process_pr(msg->dest, msg->dest_t, msg->m_type, msg->pl,
+			msg->pl_size);
 	stats_time_take(STATS_MSG_PROCESSED);
 
 	model_allocator_checkpoint_take(array_count(proc_p->past_msgs) - 1);

@@ -98,8 +98,8 @@ extern nid_t nid;
 enum {nid = 0, n_nodes = 1};
 #endif
 
-extern void ProcessEvent(lp_id_t me, simtime_t now, unsigned event_type,
-	const void *restrict content, unsigned size, void *restrict state);
-extern void ProcessEvent_pr(lp_id_t me, simtime_t now, unsigned event_type,
-	const void *restrict content, unsigned size, void *restrict state);
-extern bool CanEnd(lp_id_t me, const void *state);
+extern void model_process(lp_id_t me, simtime_t now, unsigned event_type,
+	const void *content, unsigned size);
+extern void model_process_pr(lp_id_t me, simtime_t now, unsigned event_type,
+	const void *content, unsigned size);
+extern bool model_lp_can_end(lp_id_t me);

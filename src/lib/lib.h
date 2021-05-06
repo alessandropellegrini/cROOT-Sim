@@ -10,19 +10,14 @@
  */
 #pragma once
 
-#include <lib/abm/abm.h>
-#include <lib/random/random.h>
-#include <lib/state/state.h>
-#include <lib/topology/topology.h>
-
 struct lib_ctx {
-	// abm library
+/*	// abm library
 	struct abm_region region;
 	// random library
 	uint64_t rng_s[4];
 	double unif;
 	// todo remove
-	void *state_s;
+	void *state_s;*/
 };
 
 extern void lib_global_init(void);

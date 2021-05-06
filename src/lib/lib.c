@@ -10,26 +10,18 @@
  */
 #include <lib/lib.h>
 
-#include <lib/lib_internal.h>
-
 void lib_global_init(void)
 {
-	topology_global_init();
 }
 
 void lib_global_fini(void)
 {
-
 }
 
 void lib_lp_init(void)
 {
-	abm_lib_lp_init();
-	random_lib_lp_init();
-	state_lib_lp_init();
 }
 
 void lib_lp_fini(void)
 {
-	abm_lib_lp_fini();
 }
