@@ -99,7 +99,7 @@ enum {nid = 0, n_nodes = 1};
 #endif
 
 extern void ProcessEvent(lp_id_t me, simtime_t now, unsigned event_type,
-	const void *content, unsigned size, void *state);
+	const void *restrict content, unsigned size, void *restrict state);
 extern void ProcessEvent_pr(lp_id_t me, simtime_t now, unsigned event_type,
-	const void *content, unsigned size, void *state);
+	const void *restrict content, unsigned size, void *restrict state);
 extern bool CanEnd(lp_id_t me, const void *state);

@@ -79,7 +79,7 @@ void model_parse(int key, const char *arg) {
 
 struct topology_settings_t topology_settings = {.default_geometry = TOPOLOGY_HEXAGON};
 
-void ProcessEvent(lp_id_t me, simtime_t now, int event_type, event_content_type *event_content, unsigned int size, void *ptr) {
+void ProcessEvent(lp_id_t me, simtime_t now, int event_type, event_content_type *restrict event_content, unsigned int size, void *restrict ptr) {
 	(void)size;
 	
 	unsigned int w;
@@ -95,7 +95,7 @@ void ProcessEvent(lp_id_t me, simtime_t now, int event_type, event_content_type 
 	simtime_t handoff_time;
 	simtime_t timestamp = 0;
 
-	lp_state_type *state;
+	lp_state_type *restrict state;
 	state = (lp_state_type*)ptr;
 
 	if(state != NULL) {

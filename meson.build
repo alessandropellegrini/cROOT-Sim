@@ -66,6 +66,7 @@ endif
 # Used to build the LLVM plugin
 llvm_cfg_gen = find_program('scripts/llvm_cfg_gen.py')
 
+subdir('plugins')
 subdir('src')
 subdir('test')
 subdir('docs')

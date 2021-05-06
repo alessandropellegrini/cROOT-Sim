@@ -47,10 +47,10 @@
 #define heap_insert(self, cmp_f, elem)					\
 __extension__({								\
 	__typeof(array_count(self)) __i_h = array_count(self);		\
-	array_push(self, elem);						\
+	array_reserve_one(self);					\
 	while(								\
 		__i_h && 						\
-		cmp_f(elem, array_items(self)[(__i_h - 1U) / 2U])	\
+		(cmp_f(elem, array_items(self)[(__i_h - 1U) / 2U]))	\
 	){								\
 		array_items(self)[__i_h] = 				\
 			array_items(self)[(__i_h - 1U) / 2U];		\

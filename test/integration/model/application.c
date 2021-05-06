@@ -18,9 +18,9 @@ struct ap_option model_options[] = {{0}};
 
 #define do_random() (lcg_random(state->rng_state))
 
-void ProcessEvent(lp_id_t me, simtime_t now, unsigned event_type, const void *event_content, unsigned event_size, void *st)
+void ProcessEvent(lp_id_t me, simtime_t now, unsigned event_type, const void *restrict event_content, unsigned event_size, void *restrict st)
 {
-	lp_state *state = st;
+	lp_state *restrict state = st;
 	if (state && state->events >= COMPLETE_EVENTS) {
 		if (event_type == LP_FINI) {
 			if (model_expected_output[me] != state->total_checksum) {

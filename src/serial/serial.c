@@ -179,6 +179,7 @@ void ScheduleNewEvent(lp_id_t receiver, simtime_t timestamp,
 
 	struct lp_msg *msg = msg_allocator_pack(
 		receiver, timestamp, event_type, payload, payload_size);
+	msg->raw_flags = 0;
 	heap_insert(queue, msg_is_before, msg);
 }
 

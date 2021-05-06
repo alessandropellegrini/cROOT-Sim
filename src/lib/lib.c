@@ -24,11 +24,12 @@ void lib_global_fini(void)
 
 void lib_lp_init(void)
 {
+	abm_lib_lp_init();
 	random_lib_lp_init();
 	state_lib_lp_init();
 }
 
 void lib_lp_fini(void)
 {
-
+	abm_lib_lp_fini();
 }

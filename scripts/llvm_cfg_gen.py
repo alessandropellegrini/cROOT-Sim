@@ -5,7 +5,7 @@ import re
 import sys
 
 instr_specs = {
-    "to_substitute" : ["malloc", "free", "realloc", "calloc", "lp_id_get", "lib_ctx_get"],
+    "to_substitute" : ["malloc", "free", "realloc", "calloc", "lp_id_get", "lib_ctx_get", "ScheduleNewEvent"],
     "substituted_suffix" : "_mt",
     "processed_suffix" : "_pr",
     "to_ignore" : ['_log_log']

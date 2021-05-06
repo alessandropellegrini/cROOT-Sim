@@ -3,6 +3,8 @@
 
 # Model helper library sources
 lib_srcs = files(
+  'abm' / 'abm.c',
+  'abm' / 'agent_map.c',
   'random' / 'random.c',
   'state' / 'state.c',
   'topology' / 'topology.c',

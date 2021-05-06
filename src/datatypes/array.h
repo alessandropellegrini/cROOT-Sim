@@ -82,6 +82,12 @@ __extension__({								\
 	array_count(self)++;						\
 })
 
+#define array_reserve_one(self)						\
+__extension__({								\
+	array_expand(self);						\
+	array_count(self)++;						\
+})
+
 #define array_pop(self)							\
 __extension__({								\
 	__typeof__(*array_items(self)) __popval;			\
