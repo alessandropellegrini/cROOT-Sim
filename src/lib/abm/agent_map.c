@@ -1,3 +1,11 @@
+/**
+ * @file lib/abm/agent_map.c
+ *
+ * @brief Agent map
+ *
+ * SPDX-FileCopyrightText: 2008-2021 HPDCS Group <rootsim@googlegroups.com>
+ * SPDX-License-Identifier: GPL-3.0-only
+ */
 #include <lib/abm/agent_map.h>
 
 #include <lib/abm/abm.h>

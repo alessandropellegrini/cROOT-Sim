@@ -54,5 +54,8 @@ Module.symvers
 Mkfile.old
 dkms.conf
 
+# ROOT-Sim statistics files
+*.bin
+
 # Common name for Meson build folder
 build/

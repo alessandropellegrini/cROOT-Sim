@@ -13,6 +13,7 @@
 #include <core/intrinsics.h>
 #include <lib/lib_internal.h>
 
+#include <limits.h>
 #include <math.h>
 #include <memory.h>
 
@@ -23,6 +24,7 @@ struct {
 	lp_id_t regions_cnt; 			/**< the number of LPs involved in the topology */
 	uint32_t edge; 				/**< the pre-computed edge length (if it makes sense for the current topology geometry) */
 	enum _topology_geometry_t geometry;	/**< the topology geometry (see ROOT-Sim.h) */
+	unsigned bits;
 } topology_global;
 
 /**
@@ -61,6 +63,10 @@ void topology_global_init(void)
 	}
 	// set the edge value
 	topology_global.edge = edge;
+
+	const lp_id_t dir_mo = DirectionsCount() - 1;
+	topology_global.bits = sizeof(dir_mo) * CHAR_BIT -
+			intrinsics_clz(dir_mo);
 }
 
 __attribute__ ((pure)) lp_id_t RegionsCount(void)
@@ -197,11 +203,11 @@ __attribute__ ((pure)) lp_id_t GetReceiver(lp_id_t from,
 		return likely(direction == DIRECTION_N) ? direction : DIRECTION_INVALID;
 
 	case TOPOLOGY_STAR:
-		if(sender) {
-			if(!direction)
+		if (sender) {
+			if (!direction)
 				return 0;
 		} else {
-			if((uint64_t)direction + 1 < regions_cnt)
+			if ((uint64_t)direction + 1 < regions_cnt)
 				return direction + 1;
 		}
 	}
@@ -210,18 +216,14 @@ __attribute__ ((pure)) lp_id_t GetReceiver(lp_id_t from,
 
 lp_id_t FindReceiver(void)
 {
-	const lp_id_t dir_cnt = DirectionsCount();
-	const unsigned bits = 64 - intrinsics_clz(dir_cnt);
+	const unsigned bits = topology_global.bits;
+	const lp_id_t mask = (UINT64_C(1) << bits) - 1;
 	uint64_t rnd = RandomU64();
 	unsigned i = 64;
 	do {
-		lp_id_t dir = rnd & ((UINT64_C(1) << bits) - 1);
-		if (dir < dir_cnt) {
-			dir += 2 * (topology_global.geometry == TOPOLOGY_HEXAGON);
-			const lp_id_t ret = GetReceiver(lp_id_get(), dir);
-			if (ret != DIRECTION_INVALID)
-				return ret;
-		}
+		const lp_id_t ret = GetReceiver(lp_id_get(), rnd & mask);
+		if (ret != DIRECTION_INVALID)
+			return ret;
 
 		if (likely((i -= bits) >= bits)) {
 			rnd >>= bits;

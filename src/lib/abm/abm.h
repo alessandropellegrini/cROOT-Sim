@@ -1,3 +1,12 @@
+/**
+ * @file lib/abm/abm.h
+ *
+ * @brief Agent based library header
+ *
+ * SPDX-FileCopyrightText: 2008-2021 HPDCS Group <rootsim@googlegroups.com>
+ * SPDX-License-Identifier: GPL-3.0-only
+ */
+
 #pragma once
 
 #include <core/core.h>

@@ -1,3 +1,11 @@
+/**
+ * @file lib/abm/agent_map.h
+ *
+ * @brief Agent map header
+ *
+ * SPDX-FileCopyrightText: 2008-2021 HPDCS Group <rootsim@googlegroups.com>
+ * SPDX-License-Identifier: GPL-3.0-only
+ */
 #pragma once
 
 #include <stdint.h>

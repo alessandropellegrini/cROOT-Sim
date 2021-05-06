@@ -63,10 +63,8 @@ else
   log_level_def = '-DLOG_LEVEL=LOG_INFO'
 endif
 
-# Used to build the LLVM plugin
-llvm_cfg_gen = find_program('scripts/llvm_cfg_gen.py')
-
 subdir('plugins')
+subdir('scripts')
 subdir('src')
 subdir('test')
 subdir('docs')

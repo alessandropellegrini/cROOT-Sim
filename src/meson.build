@@ -12,7 +12,7 @@ rootsim_version_def = '-DROOTSIM_VERSION="' + meson.project_version() + '"'
 rootsim_c_args = [rootsim_version_def, log_level_def]
 
 # ROOT-Sim library sources
-rootsim_srcs = [
+rootsim_srcs += files(
   'arch' / 'io.c',
   'arch' / 'mem.c',
   'arch' / 'timer.c',
@@ -34,7 +34,7 @@ rootsim_srcs = [
   'parallel' / 'parallel.c',
   'serial' / 'serial.c',
   'main.c'
-]
+)
 
 if mpi_dep.found()
   rootsim_c_args += '-DROOTSIM_MPI=1'

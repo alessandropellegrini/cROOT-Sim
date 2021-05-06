@@ -2,7 +2,7 @@
 # SPDX-License-Identifier: GPL-3.0-only
 
 # Model helper library sources
-lib_srcs = files(
+rootsim_mods_srcs += files(
   'abm' / 'abm.c',
   'abm' / 'agent_map.c',
   'random' / 'random.c',
@@ -11,6 +11,6 @@ lib_srcs = files(
   'lib.c'
 )
 
-lib_objs = clang_with_plugin.process(lib_srcs)
+lib_objs = clang_with_plugin.process(rootsim_mods_srcs)
 
 rootsim_mods_lib = static_library('rootsim-mods', lib_objs, install : true)
