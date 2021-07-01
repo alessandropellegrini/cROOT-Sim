@@ -1,7 +1,7 @@
 /**
  * @file serial/serial.c
  *
- * @brief Sequential simlation engine
+ * @brief Sequential simulation engine
  *
  * SPDX-FileCopyrightText: 2008-2021 HPDCS Group <rootsim@googlegroups.com>
  * SPDX-License-Identifier: GPL-3.0-only
@@ -127,8 +127,8 @@ static void serial_simulation_run(void)
 					cur_msg->dest_t
 				);
 			s_current_lp->last_evt_time = cur_msg->dest_t;
+			current_evt_time = cur_msg->dest_t;
 		}
-		current_evt_time = cur_msg->dest_t;
 #endif
 
 		stats_time_start(STATS_MSG_PROCESSED);
@@ -163,7 +163,7 @@ static void serial_simulation_run(void)
 			last_vt = timer_new();
 		}
 
-		msg_allocator_free(heap_extract(queue, msg_is_before));
+		msg_allocator_free(heap_extract(queue, msg_is_before_serial));
 	}
 
 	stats_dump();
@@ -179,8 +179,8 @@ void ScheduleNewEvent(lp_id_t receiver, simtime_t timestamp,
 
 	struct lp_msg *msg = msg_allocator_pack(
 		receiver, timestamp, event_type, payload, payload_size);
-	msg->raw_flags = 0;
-	heap_insert(queue, msg_is_before, msg);
+
+	heap_insert(queue, msg_is_before_serial, msg);
 }
 
 /**

@@ -8,7 +8,6 @@ subdir('instr')
 # TODO integrate the plugin system
 subdir('lib')
 
-rootsim_version_def = '-DROOTSIM_VERSION="' + meson.project_version() + '"'
 rootsim_c_args = [rootsim_version_def, log_level_def]
 
 # ROOT-Sim library sources
@@ -53,14 +52,15 @@ compiler_c_args = [
   '-DROOTSIM_OPTIMIZATION_OPTIONS="' + ' '.join(c_optimization_options) + '"'
 ]
 
+clang_path = clang_compiler.full_path()
 if mpi_dep.found()
-  compiler_c_args += '-DROOTSIM_CC="env OMPI_CC=' + clang_compiler.full_path() + ' MPICH_CC=' + clang_compiler.full_path() + ' mpicc"'
+  compiler_c_args += '-DROOTSIM_CC="env OMPI_CC=' + clang_path + ' MPICH_CC=' + clang_path + ' mpicc"'
 else
-  compiler_c_args += '-DROOTSIM_CC="' + clang_compiler.full_path() + '"'
+  compiler_c_args += '-DROOTSIM_CC="' + clang_path + '"'
 endif
 
 # ROOT-Sim compiler
-rootsim_cc = executable('rootsim-cc', sources : 'compiler' / 'compiler.c', 
+rootsim_cc = executable('rootsim-cc', sources : 'compiler' / 'compiler.c',
   c_args : compiler_c_args, install : true)
 
 # Install headers
