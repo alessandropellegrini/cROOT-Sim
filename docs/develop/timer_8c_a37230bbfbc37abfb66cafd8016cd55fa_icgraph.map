@@ -1,0 +1,4 @@
+<map id="timer_hr_new" name="timer_hr_new">
+<area shape="rect" id="node1" title="Starts a high resolution, CPU dependent time interval measure." alt="" coords="173,5,284,32"/>
+<area shape="rect" id="node2" href="$timer_8h.html#aa62feba6e0f24506aeafde8dc376e9ed" title="Computes a time interval measure using a previous timer_uint value." alt="" coords="5,5,125,32"/>
+</map>

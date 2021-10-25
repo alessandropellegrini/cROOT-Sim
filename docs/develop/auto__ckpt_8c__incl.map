@@ -1,0 +1,23 @@
+<map id="src/mm/auto_ckpt.c" name="src/mm/auto_ckpt.c">
+<area shape="rect" id="node1" title="Autonomic checkpoint interval selection module." alt="" coords="199,5,350,32"/>
+<area shape="rect" id="node2" href="$auto__ckpt_8h.html" title="Autonomic checkpoint interval selection header." alt="" coords="59,80,187,107"/>
+<area shape="rect" id="node3" href="$init_8h.html" title="Initialization routines." alt="" coords="113,155,199,181"/>
+<area shape="rect" id="node15" href="$stats_8h.html" title="Statistics module." alt="" coords="224,155,315,181"/>
+<area shape="rect" id="node16" href="$process_8h.html" title="LP state management functions." alt="" coords="323,80,423,107"/>
+<area shape="rect" id="node21" title=" " alt="" coords="447,80,515,107"/>
+<area shape="rect" id="node4" href="$core_8h.html" title="Core ROOT&#45;Sim functionalities." alt="" coords="218,229,313,256"/>
+<area shape="rect" id="node5" href="$log_8h.html" title="Logging library." alt="" coords="189,379,267,405"/>
+<area shape="rect" id="node6" title=" " alt="" coords="5,453,88,480"/>
+<area shape="rect" id="node14" title=" " alt="" coords="135,304,206,331"/>
+<area shape="rect" id="node7" href="$mm_8h.html" title="Memory Manager main header." alt="" coords="464,304,555,331"/>
+<area shape="rect" id="node12" title=" " alt="" coords="230,304,293,331"/>
+<area shape="rect" id="node13" title=" " alt="" coords="369,304,439,331"/>
+<area shape="rect" id="node8" href="$mem_8h.html" title="Platform specific memory utilities." alt="" coords="462,379,562,405"/>
+<area shape="rect" id="node10" title=" " alt="" coords="599,453,673,480"/>
+<area shape="rect" id="node11" title=" " alt="" coords="357,453,427,480"/>
+<area shape="rect" id="node9" href="$platform_8h.html" title="Determine on what OS we are compiling." alt="" coords="452,453,575,480"/>
+<area shape="rect" id="node17" href="$array_8h.html" title="Dynamic array datatype." alt="" coords="511,229,646,256"/>
+<area shape="rect" id="node19" href="$msg_8h.html" title="Message management functions." alt="" coords="339,155,418,181"/>
+<area shape="rect" id="node18" title=" " alt="" coords="579,304,650,331"/>
+<area shape="rect" id="node20" title=" " alt="" coords="388,229,487,256"/>
+</map>

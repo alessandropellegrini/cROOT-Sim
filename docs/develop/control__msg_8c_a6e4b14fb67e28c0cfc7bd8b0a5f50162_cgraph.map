@@ -1,0 +1,5 @@
+<map id="control_msg_process" name="control_msg_process">
+<area shape="rect" id="node1" title="Handle a received control message." alt="" coords="5,31,164,57"/>
+<area shape="rect" id="node2" href="$gvt_8c.html#a51288803831c19ccf9e228a747856441" title="Handles a MSG_CTRL_GVT_DONE control message." alt="" coords="212,5,380,32"/>
+<area shape="rect" id="node3" href="$gvt_8c.html#a1ef978b8eb04f03a70530097af46d436" title="Handles a MSG_CTRL_GVT_START control message." alt="" coords="217,56,375,83"/>
+</map>

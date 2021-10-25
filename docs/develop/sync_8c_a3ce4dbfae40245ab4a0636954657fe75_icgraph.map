@@ -1,0 +1,4 @@
+<map id="sync_thread_barrier" name="sync_thread_barrier">
+<area shape="rect" id="node1" title="Synchronizes threads on a barrier." alt="" coords="115,5,265,32"/>
+<area shape="rect" id="node2" href="$lp_8h.html#a110377e6d9798c056339a257489eb530" title="Finalize the data structures of the LPs hosted in the calling thread." alt="" coords="5,5,67,32"/>
+</map>

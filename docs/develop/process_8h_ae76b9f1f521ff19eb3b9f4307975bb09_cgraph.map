@@ -1,0 +1,4 @@
+<map id="process_msg" name="process_msg">
+<area shape="rect" id="node1" title="extract and process a message, if available" alt="" coords="5,5,112,32"/>
+<area shape="rect" id="node2" href="$msg__queue_8c.html#a770fca442d05aba9e8d866cf10516fd7" title="Extracts the next message from the queue." alt="" coords="160,5,311,32"/>
+</map>

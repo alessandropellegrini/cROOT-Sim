@@ -1,0 +1,19 @@
+<map id="src/distributed/control_msg.c" name="src/distributed/control_msg.c">
+<area shape="rect" id="node1" title="MPI remote control messages module." alt="" coords="174,5,338,47"/>
+<area shape="rect" id="node2" href="$control__msg_8h.html" title="MPI remote control messages header." alt="" coords="185,95,327,136"/>
+<area shape="rect" id="node3" href="$gvt_8h.html" title="Global Virtual Time." alt="" coords="255,184,335,211"/>
+<area shape="rect" id="node17" href="$termination_8h.html" title="Termination detection module." alt="" coords="150,259,285,285"/>
+<area shape="rect" id="node4" href="$core_8h.html" title="Core ROOT&#45;Sim functionalities." alt="" coords="247,333,342,360"/>
+<area shape="rect" id="node15" href="$msg_8h.html" title="Message management functions." alt="" coords="47,259,126,285"/>
+<area shape="rect" id="node5" href="$log_8h.html" title="Logging library." alt="" coords="393,483,471,509"/>
+<area shape="rect" id="node6" title=" " alt="" coords="429,557,512,584"/>
+<area shape="rect" id="node7" href="$mm_8h.html" title="Memory Manager main header." alt="" coords="148,408,239,435"/>
+<area shape="rect" id="node12" title=" " alt="" coords="263,408,326,435"/>
+<area shape="rect" id="node13" title=" " alt="" coords="53,408,123,435"/>
+<area shape="rect" id="node14" title=" " alt="" coords="350,408,421,435"/>
+<area shape="rect" id="node8" href="$mem_8h.html" title="Platform specific memory utilities." alt="" coords="123,483,223,509"/>
+<area shape="rect" id="node10" title=" " alt="" coords="5,557,80,584"/>
+<area shape="rect" id="node11" title=" " alt="" coords="251,557,322,584"/>
+<area shape="rect" id="node9" href="$platform_8h.html" title="Determine on what OS we are compiling." alt="" coords="104,557,227,584"/>
+<area shape="rect" id="node16" title=" " alt="" coords="124,333,223,360"/>
+</map>

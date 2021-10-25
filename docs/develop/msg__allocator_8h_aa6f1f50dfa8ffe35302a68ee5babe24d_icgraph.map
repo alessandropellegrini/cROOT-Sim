@@ -1,0 +1,4 @@
+<map id="msg_allocator_alloc" name="msg_allocator_alloc">
+<area shape="rect" id="node1" title="Allocate a new message with given payload size." alt="" coords="205,5,357,32"/>
+<area shape="rect" id="node2" href="$msg__allocator_8h.html#a339eae10da09884690639407f21e7f7d" title="Allocate a new message and populate it." alt="" coords="5,5,157,32"/>
+</map>
