@@ -15,7 +15,7 @@
 
 _Atomic(nid_t) nodes_to_end;
 static _Atomic(rid_t) thr_to_end;
-static __thread uint64_t lps_to_end;
+static _Atomic(uint64_t) lps_to_end;
 static __thread simtime_t max_t;
 
 void termination_global_init(void)
@@ -28,7 +28,7 @@ void termination_lp_init(void)
 {
 	struct lp_ctx *this_lp = current_lp;
 	bool term = CanEnd(this_lp - lps, current_lp->lib_ctx_p->state_s);
-	lps_to_end += !term;
+	atomic_fetch_add_explicit(&lps_to_end, !term, memory_order_relaxed);
 	this_lp->t_d = term * SIMTIME_MAX;
 }
 
@@ -40,7 +40,7 @@ void termination_on_msg_process(simtime_t msg_time)
 	bool term = CanEnd(this_lp - lps, this_lp->lib_ctx_p->state_s);
 	max_t = term ? max(msg_time, max_t) : max_t;
 	this_lp->t_d = term * msg_time;
-	lps_to_end -= term;
+	atomic_fetch_add_explicit(&lps_to_end, -term, memory_order_relaxed);
 }
 
 void termination_on_ctrl_msg(void)
@@ -50,7 +50,8 @@ void termination_on_ctrl_msg(void)
 
 void termination_on_gvt(simtime_t current_gvt)
 {
-	if (likely((lps_to_end || max_t >= current_gvt) &&
+	if (likely((atomic_load_explicit(&lps_to_end, memory_order_relaxed) ||
+			max_t >= current_gvt) &&
 			current_gvt < global_config.termination_time))
 		return;
 	max_t = SIMTIME_MAX;

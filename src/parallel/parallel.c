@@ -19,7 +19,9 @@
 #include <gvt/termination.h>
 #include <lib/lib.h>
 #include <log/stats.h>
+#include <lp/binding.h>
 #include <lp/lp.h>
+#include <lp/thief.h>
 #include <mm/auto_ckpt.h>
 #include <mm/model_allocator.h>
 #include <mm/msg_allocator.h>
@@ -34,6 +36,7 @@ static void worker_thread_init(rid_t this_rid)
 	model_allocator_init();
 	sync_thread_barrier();
 	lp_init();
+	binding_init();
 	process_init();
 
 #ifdef ROOTSIM_MPI
@@ -84,6 +87,7 @@ static thr_ret_t THREAD_CALL_CONV parallel_thread_run(void *rid_arg)
 			auto_ckpt_on_gvt();
 			lp_on_gvt(current_gvt);
 			stats_on_gvt(current_gvt);
+			thief_on_gvt();
 		}
 	}
 
@@ -98,6 +102,7 @@ static void parallel_global_init(void)
 	lib_global_init();
 	process_global_init();
 	lp_global_init();
+	binding_global_init();
 	msg_queue_global_init();
 	termination_global_init();
 	gvt_global_init();
@@ -106,6 +111,7 @@ static void parallel_global_init(void)
 static void parallel_global_fini(void)
 {
 	msg_queue_global_fini();
+	binding_global_fini();
 	lp_global_fini();
 	process_global_fini();
 	lib_global_fini();

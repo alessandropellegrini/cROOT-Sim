@@ -18,6 +18,7 @@
 #include <core/core.h>
 #include <core/sync.h>
 #include <datatypes/heap.h>
+#include <lp/binding.h>
 #include <lp/lp.h>
 #include <mm/msg_allocator.h>
 
@@ -158,7 +159,7 @@ simtime_t msg_queue_time_peek(void)
  */
 void msg_queue_insert(struct lp_msg *msg)
 {
-	rid_t dest_rid = lid_to_rid(msg->dest);
+	rid_t dest_rid = binding_lp_id_to_rid(msg->dest);
 	struct msg_queue *mq = &queues[dest_rid];
 	struct q_elem qe = {.t = msg->dest_t, .m = msg};
 

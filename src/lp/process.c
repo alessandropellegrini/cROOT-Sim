@@ -16,6 +16,7 @@
 #include <distributed/mpi.h>
 #include <gvt/gvt.h>
 #include <log/stats.h>
+#include <lp/binding.h>
 #include <lp/lp.h>
 #include <mm/auto_ckpt.h>
 #include <mm/msg_allocator.h>
@@ -318,6 +319,11 @@ void process_msg(void)
 	struct lp_msg *msg = msg_queue_extract();
 	if (unlikely(!msg)) {
 		current_lp = NULL;
+		return;
+	}
+
+	if (unlikely(binding_lp_id_to_rid(msg->dest) != rid)) {
+		msg_queue_insert(msg);
 		return;
 	}
 
